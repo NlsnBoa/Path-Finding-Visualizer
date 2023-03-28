@@ -1,0 +1,10 @@
+* {
+    --cobalt: #2D27fe;
+    --hotred: #FF0A6c;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    background: linear-gradient(45deg,var(--hotred), var(--cobalt));
+}

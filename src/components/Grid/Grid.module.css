@@ -1,0 +1,6 @@
+.container {
+    height: inherit;
+    width: inherit;
+    display: flex;
+    flex-wrap: wrap;
+}

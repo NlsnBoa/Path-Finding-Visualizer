@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: none;
+    width: 100vw;
+    height: 150px;
+    padding: none;
+    margin: none;
+}
+
+h1 {
+    margin-bottom: 80px;
+}
