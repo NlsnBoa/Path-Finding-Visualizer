@@ -2,11 +2,13 @@
     box-sizing: border-box;
     background-color: black;
     color: aliceblue;
-    width: 100px;
-    height: 100px;
+    width: 97vw;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 25px;
+    margin-bottom: 20px;
 }
 
 
