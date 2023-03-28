@@ -1,0 +1,12 @@
+.container {
+    box-sizing: border-box;
+    background-color: black;
+    color: aliceblue;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
