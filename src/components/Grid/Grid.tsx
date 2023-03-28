@@ -20,7 +20,7 @@ const Grid = ({ numRows, numCols }: Props) => {
     return grid;
   };
 
-  return <div className={styles.container}>{createGrid()}</div>;
+  return <div className={styles.grid}>{createGrid()}</div>;
 };
 
 export default Grid;

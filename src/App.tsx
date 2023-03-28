@@ -1,8 +1,5 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import Board from "./components/Board";
+import Grid from "./components/Grid";
 import Nav from "./components/Nav";
 
 // Here I am using the App component as an intermediary between
@@ -12,7 +9,7 @@ function App() {
     <>
       <div className="container">
         <Nav></Nav>
-        <Board></Board>
+        <Grid numCols={30} numRows={30}></Grid>
       </div>
     </>
   );

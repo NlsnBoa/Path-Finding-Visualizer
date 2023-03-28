@@ -1,6 +1,6 @@
 .node {
-    width: 25px;
-    height: 25px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+  height: 0;
+  padding-bottom: calc(100% / 1); /* Maintain square aspect ratio */
+  border: 1px solid #ccc;
+  box-sizing: border-box;
   }
