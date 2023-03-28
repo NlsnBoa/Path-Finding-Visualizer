@@ -1,10 +1,12 @@
 * {
     --cobalt: #2D27fe;
     --hotred: #FF0A6c;
+    --limeGreen: #00ff5b;
+    --purple: #0014ff;
 }
 
 body {
     padding: 0px;
     margin: 0px;
-    background: linear-gradient(45deg,var(--hotred), var(--cobalt));
+    background: linear-gradient(to right, rgb(55, 65, 81), rgb(17, 24, 39), rgb(0, 0, 0));
 }

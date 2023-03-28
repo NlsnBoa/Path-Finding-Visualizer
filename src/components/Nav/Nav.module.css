@@ -1,14 +1,21 @@
 .container {
     display: flex;
+    background: none;
     justify-content: center;
     align-items: center;
     background-color: none;
     width: 100vw;
-    height: 150px;
+    height: 110px;
     padding: none;
     margin: none;
 }
 
 h1 {
-    margin-bottom: 80px;
+    margin-bottom: 40px;
+    font-size: 50px;
+    background: radial-gradient(at right center, rgb(56, 189, 248), rgb(49, 46, 129)); 
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color:transparent;
 }
