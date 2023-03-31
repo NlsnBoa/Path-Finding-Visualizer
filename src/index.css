@@ -8,5 +8,8 @@
 body {
     padding: 0px;
     margin: 0px;
-    background: linear-gradient(to right, rgb(55, 65, 81), rgb(17, 24, 39), rgb(0, 0, 0));
+    /* background: linear-gradient(to right, rgb(55, 65, 81), rgb(17, 24, 39), rgb(0, 0, 0)) */
+    /* background: conic-gradient(at right bottom, rgb(212, 212, 212), rgb(254, 243, 199), rgb(243, 232, 255)) */
+    /* background:radial-gradient(at center top, rgb(82, 82, 82), rgb(17, 94, 89), rgb(31, 41, 55)); */
+    background: #1C1C1C;
 }

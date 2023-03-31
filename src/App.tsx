@@ -7,9 +7,16 @@ import Nav from "./components/Nav";
 function App() {
   return (
     <>
-      <div className="container">
+      <div className="app">
         <Nav></Nav>
-        <Grid numCols={30} numRows={30}></Grid>
+        <div className="container">
+          <Grid
+            target={"node-5-35"}
+            start={"node-9-15"}
+            numCols={50}
+            numRows={20}
+          ></Grid>
+        </div>
       </div>
     </>
   );
