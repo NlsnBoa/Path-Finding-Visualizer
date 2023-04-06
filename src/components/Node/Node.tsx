@@ -4,6 +4,7 @@ import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import styles from "./Node.module.css";
 interface Props {
   arrow?: string;
+  arrowStyling?: string;
   bullsEye?: string;
   bullsEyeStyling?: string;
   coordinate: string;
@@ -15,6 +16,7 @@ interface Props {
 
 const Node = ({
   arrow = "notArrow",
+  arrowStyling = "noStyling",
   coordinate,
   bullsEye = "notBullsEye",
   bullsEyeStyling = "noStyling",
@@ -59,7 +61,8 @@ const Node = ({
 
       {arrow === coordinate && (
         <MdOutlineKeyboardDoubleArrowRight
-          className={styles.arrow}
+          onMouseDown={() => handleIsMouseDown("notArrow")}
+          className={styles[arrowStyling]}
         ></MdOutlineKeyboardDoubleArrowRight>
       )}
     </div>

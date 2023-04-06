@@ -3,7 +3,7 @@
 .container {
     display: flex;
     background: #121214;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
     background-color: none;
     width: 100vw;
@@ -14,7 +14,7 @@
 }
 
 h1 {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     font-family: 'Outfit', sans-serif;
     font-size: 35px;
     background:  #CAD3D7; 
@@ -23,4 +23,63 @@ h1 {
     -webkit-text-fill-color: transparent;
     color:transparent;
     margin-left: 20px;
+}
+
+.menu {
+    display: flex;
+    background: inherit;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: none;
+    width: 55vw;
+    height: 110px;
+    margin-bottom: 0px;
+}
+
+.buttonMain {
+    background: black;
+	color: #CAD3D7;
+    font-size: 25px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+	border: none;
+	padding: 0;
+    height: 40px;
+    width: 130px;
+	cursor: pointer;
+	outline: inherit;
+    margin-left: 10px;
+    border-radius: 5px;
+    margin-top: 40px;
+    box-shadow: 0px 0px 2px 1px black;
+}
+
+.buttonMain:hover {
+    transition: 0.4s;
+    color: #006d77;
+    scale: 1.1;
+    box-shadow: 0px 0px 0px 1px black;;
+}
+
+.buttonSubset {
+    background: inherit;
+	color: #CAD3D7;
+    font-size: 20px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+	border: none;
+	padding: 0;
+    height: 30px;
+    width: 120px;
+	cursor: pointer;
+	outline: inherit;
+    margin-left: 0px;
+    margin-top: 0px;
+    /* box-shadow: 0px 0px 5px 1px black; */
+
+}
+
+.buttonSubset:hover {
+    color: #006d77;
+    transition: 0.3s;
 }

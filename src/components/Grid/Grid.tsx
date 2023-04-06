@@ -13,28 +13,51 @@ interface Props {
 // the first can be found within this react component where
 // as I am loading each node to the screen I am mapping them and checking
 // for their key and event values
-// The other way is found within the Node component where I am
+// The other way is found within the Node component where I am passing their coordinate
+// as an argument during their creation.
 const Grid = ({ numRows, numCols, target, start }: Props) => {
   // create the grid and give each node a coordinate value.
   const [isMouseHover, setIsMouseHover] = useState(false);
   const [bullsEye, setBullsEye] = useState(target);
   const [arrow, setArrow] = useState(start);
   const [bullsEyeStyling, setBullsEyeStyling] = useState("bullsEyeStatic");
+  const [arrowStyling, setArrowStyling] = useState("arrowStatic");
+  const [objectInAction, setObjectInAction] = useState("none");
 
   const handleIsMouseUp = (newCoordinate: string) => {
-    setBullsEye(newCoordinate);
-    setBullsEyeStyling("bullsEyeStatic");
-    setIsMouseHover(false);
+    if (objectInAction === "bullsEyeInAction") {
+      setBullsEye(newCoordinate);
+      setBullsEyeStyling("bullsEyeStatic");
+      setIsMouseHover(false);
+    } else if (objectInAction === "arrowInAction") {
+      setArrow(newCoordinate);
+      setArrowStyling("arrowStatic");
+      setIsMouseHover(false);
+    }
+
+    setObjectInAction("none");
   };
 
   const handleIsMouseHover = (newCoordinate: string) => {
-    setBullsEye(newCoordinate);
-    setBullsEyeStyling("bullsEyeDrop");
+    if (objectInAction === "bullsEyeInAction") {
+      setBullsEye(newCoordinate);
+      setBullsEyeStyling("bullsEyeDrop");
+    } else if (objectInAction === "arrowInAction") {
+      setArrow(newCoordinate);
+      setArrowStyling("arrowDrop");
+    }
   };
 
   const handleIsMouseDown = (newCoordinate: string) => {
-    setBullsEye(newCoordinate);
-    setIsMouseHover(true);
+    if (newCoordinate === "notBullsEye") {
+      setBullsEye(newCoordinate);
+      setIsMouseHover(true);
+      setObjectInAction("bullsEyeInAction");
+    } else if (newCoordinate === "notArrow") {
+      setArrow(newCoordinate);
+      setIsMouseHover(true);
+      setObjectInAction("arrowInAction");
+    }
   };
 
   const createGrid = () => {
@@ -60,6 +83,7 @@ const Grid = ({ numRows, numCols, target, start }: Props) => {
           grid.push(
             <Node
               arrow={arrow}
+              arrowStyling={arrowStyling}
               mouseHover={isMouseHover}
               handleIsMouseHover={handleIsMouseHover}
               handleIsMouseDown={handleIsMouseDown}
