@@ -1,8 +1,29 @@
-* {
-    --cobalt: #2D27fe;
-    --hotred: #FF0A6c;
-    --limeGreen: #00ff5b;
-    --purple: #0014ff;
+:root {
+    --body-background-color: #1C1C1C;
+    --nav-background-color: #121214;
+    --text-color: #CAD3D7;
+    --hovered-text-color: #006d77;
+    --grid-border: 1px solid #333333;
+    --node-border: 1px solid #22333b;
+    --wall-color-0: #028090;
+    --wall-color-50: #00a896;
+    --wall-color-100: #05668d;
+    --target: #ff006e;
+    --arrow: #ffba08;
+    --border: 1px solid #474a4a;
+    --menu-border: 1px solid #474a4d;
+    --border-radius: 8px;
+    --speed: 500ms;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--text-color);
 }
 
 body {
@@ -13,5 +34,5 @@ body {
     /* background: linear-gradient(to right, rgb(55, 65, 81), rgb(17, 24, 39), rgb(0, 0, 0)) */
     /* background: conic-gradient(at right bottom, rgb(212, 212, 212), rgb(254, 243, 199), rgb(243, 232, 255)) */
     /* background:radial-gradient(at center top, rgb(82, 82, 82), rgb(17, 94, 89), rgb(31, 41, 55)); */
-    background: #1C1C1C;
+    background: var(--body-background-color);
 }

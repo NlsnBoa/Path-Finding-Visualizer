@@ -9,7 +9,7 @@
     box-sizing: border-box;
     padding: 3px;
     overflow:auto;
-    border: 1px solid #333333;
+    border: var(--grid-border);
     border-radius: 5px;
     box-shadow: 0px 0px 10px 10px  black;
     /* background: #002E51; */

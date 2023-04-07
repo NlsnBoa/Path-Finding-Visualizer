@@ -1,0 +1,82 @@
+.dropDownMenu {
+    color: var(--text-color);
+    position: absolute;
+    top: 80px;
+    width: 180px;
+    /* transform: translateX(-45%); */
+    /* background-color: var(--body-background-color); */
+    background-color: #242526;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    overflow: hidden;
+    z-index: 1;
+
+    transition: height var(--speed) ease;
+}
+
+.menu{
+    width: 100%;
+}
+
+.menuPrimaryEnter{
+    position:absolute;
+    transform: translate(-110%);
+}
+
+.menuPrimaryEnterActive {
+    transform: translate(0%);
+    transition: all var(--speed) ease;
+}
+
+.menuPrimaryExit {
+    position:absolute;
+}
+
+.menuPrimaryExitActive {
+    transform: translate(-110%);
+    transition: all var(--speed) ease;
+}
+
+/*  */
+
+
+.menuSecondaryEnter{
+    position:absolute;
+    transform: translate(110%);
+}
+
+.menuSecondaryEnterActive {
+    transform: translate(0%);
+    transition: all var(--speed) ease;
+}
+
+.menuSecondaryExit {
+    position:absolute;
+}
+
+.menuSecondaryExitActive {
+    transform: translate(110%);
+    transition: all var(--speed) ease;
+}
+
+/*  */
+
+.menuThirdEnter{
+    position:absolute;
+    transform: translate(110%);
+}
+
+.menuThirdEnterActive {
+    transform: translate(0%);
+    transition: all var(--speed) ease;
+}
+
+.menuThirdExit {
+    position:absolute;
+}
+
+.menuThirdExitActive {
+    transform: translate(110%);
+    transition: all var(--speed) ease;
+}

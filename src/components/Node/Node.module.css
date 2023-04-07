@@ -8,7 +8,7 @@
   /* padding-bottom: calc(100% / 1);  */
   /* Maintain square aspect ratio */
   padding: 0px;
-  border: 1px solid #22333b;
+  border: var(--node-border);
   box-sizing: border-box;
   background-color: black;
 }
@@ -30,20 +30,20 @@
   0% {
     transform: scale(.3);
     /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
-    background: #028090;
+    background: var(--wall-color-0);
   }
 
   50% {
     transform: scale(1.2);
     /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
-    background: #00a896;
+    background: var(--wall-color-50);
   }
 
   100% {
     transform: scale(1.0);
     /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
     /* background-color: rgb(12, 53, 71); */
-    background: #05668d;
+    background: var(--wall-color-100);
   }
 }
 
@@ -51,7 +51,7 @@
 
 /* BullsEye Styling */
 .bullsEyeStatic {
-  color: #ff006e;
+  color: var(--target);
   box-sizing: border-box;
   height: 1.5vw;
   width: 1.5vw;
@@ -75,7 +75,7 @@
 @keyframes bullsEyeAnimation {
   0% {
     transform: scale(.3);
-    color: #ff006e;
+    color: var(--target);
     box-sizing: border-box;
     height: 1.5vw;
     width: 1.5vw;
@@ -86,7 +86,7 @@
 
   50% {
     transform: scale(1.2);
-    color: #ff006e;
+    color: var(--target);
     box-sizing: border-box;
     height: 1.5vw;
     width: 1.5vw;
@@ -97,7 +97,7 @@
 
   100% {
     transform: scale(1.0);
-    color: #ff006e;
+    color: var(--target);
     box-sizing: border-box;
     height: 1.5vw;
     width: 1.5vw;
@@ -133,7 +133,7 @@
 @keyframes arrowAnimation {
   0% {
     transform: scale(.3);
-    color: #ffba08;
+    color: var(--arrow);
     box-sizing: border-box;
     height: 1.5vw;
     width: 1.5vw;
@@ -144,7 +144,7 @@
 
   50% {
     transform: scale(1.6);
-    color: #ffba08;
+    color: var(--arrow);
     box-sizing: border-box;
     height: 1.5vw;
     width: 1.5vw;
@@ -155,7 +155,7 @@
 
   100% {
     transform: scale(1.4);
-    color: #ffba08;
+    color: var(--arrow);
     box-sizing: border-box;
     height: 1.5vw;
     width: 1.5vw;
