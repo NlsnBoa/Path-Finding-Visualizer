@@ -18,6 +18,7 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
   }, []);
 
   // We use this to calculate the rest of the tabs
+  // Pretty sure this is causing the warning
   const calcHeight = (el: { offsetHeight: any }) => {
     const height = el.offsetHeight;
     console.log(height);
@@ -33,7 +34,7 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
           <DropdownItem
             handleMenuSwitch={handleMenuSwitch}
             key={primaryValues[i]}
-            icon={primaryValues[i]}
+            icon={secondaryValues[i]}
           >
             {primaryValues[i]}
           </DropdownItem>
@@ -44,7 +45,7 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
             goToMenu={secondaryValues[i]}
             handleMenuSwitch={handleMenuSwitch}
             key={primaryValues[i]}
-            icon={primaryValues[i]}
+            icon={secondaryValues[i]}
           >
             {primaryValues[i]}
           </DropdownItem>

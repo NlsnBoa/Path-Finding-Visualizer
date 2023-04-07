@@ -5,38 +5,36 @@ import { IoMdArrowDropdown } from "react-icons/io";
 interface Props {
   children: ReactNode;
   name: string;
+  open: string;
+
+  toggleOpen: (button: string) => void;
 }
 
-const DropdownButton = ({ children, name }: Props) => {
-  const [open, setOpen] = useState(false);
-  const [openStyle, setOpenStyle] = useState("noStyle");
-
-  const handleOpenStyle = () => {
-    if (openStyle === "opened") {
-      setOpenStyle("noStyle");
-    } else {
-      setOpenStyle("opened");
-    }
-  };
-
+const DropdownButton = ({ children, name, toggleOpen, open }: Props) => {
   return (
     <div className={styles.container}>
       <button
         onClick={() => {
-          setOpen(!open);
-          handleOpenStyle();
+          // handleOpenStyle();
+          toggleOpen(name);
         }}
         className={[
           styles.button,
           styles.dropDownButton,
-          styles[openStyle],
+          styles[open === name ? "opened" : "noStyle"],
         ].join(" ")}
       >
         {name}
         {<IoMdArrowDropdown></IoMdArrowDropdown>}
       </button>
 
-      {open && children}
+      {open === name && children}
+      {open === name && (
+        <div
+          onClick={() => toggleOpen(name)}
+          className={styles.menuOffScreen}
+        ></div>
+      )}
     </div>
   );
 };

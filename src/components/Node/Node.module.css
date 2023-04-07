@@ -60,6 +60,10 @@
   padding: 0px;
 }
 
+.bullsEyeStatic:hover {
+  cursor: pointer;
+}
+
 
 .bullsEyeDrop {
   animation-name: bullsEyeAnimation;
@@ -117,6 +121,10 @@
   transform: scale(1.7);
   margin: 0px;
   padding: 0px;
+}
+
+.arrowStatic {
+  cursor: pointer;
 }
 
 .arrowDrop {

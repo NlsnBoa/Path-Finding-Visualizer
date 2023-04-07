@@ -17,16 +17,16 @@ const DropdownItem = ({
   handleMenuSwitch,
 }: Props) => {
   const generateIcon = (icon: string) => {
-    if (icon === "Arrow")
+    if (icon === "ArrowPage")
       return (
         <MdOutlineKeyboardDoubleArrowRight
           className={styles.arrowStatic}
         ></MdOutlineKeyboardDoubleArrowRight>
       );
-    else if (icon === "Target")
+    else if (icon === "TargetPage")
       return <BiBullseye className={styles.bullsEyeStatic}></BiBullseye>;
-    else if (icon === "Wall") return <div className={styles.wall}></div>;
-    else if (icon === "Path") return <div className={styles.path}></div>;
+    else if (icon === "WallPage") return <div className={styles.wall}></div>;
+    else if (icon === "PathPage") return <div className={styles.path}></div>;
   };
 
   return (

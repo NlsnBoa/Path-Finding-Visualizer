@@ -1,4 +1,17 @@
 
+.menuOffScreen {
+    position: absolute;
+    top: 110px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: none;
+    background-color: black ;
+    opacity: 0.3;
+    cursor: pointer;
+    z-index: 1;
+}
+
 .button {
     background: inherit;
 	color: var(--text-color);
@@ -14,7 +27,6 @@
     margin-left: 0px;
     margin-top: 0px;
     /* box-shadow: 0px 0px 5px 1px black; */
-
 }
 
 .opened {
@@ -22,15 +34,13 @@
     /* border: var(--border); */
     border-radius: var(--border-radius);
     background-color: black;
+    z-index: 1;
 }
 
 .button:hover {
     color: var(--hovered-text-color);
     transition: 0.3s;
 }
-
-
-
 
 .dropDownButton {
     display: flex;
