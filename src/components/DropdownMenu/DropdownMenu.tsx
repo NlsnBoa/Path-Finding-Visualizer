@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./DropdownMenu.module.css";
 import DropdownItem from "../DropdownItem";
 import { CSSTransition } from "react-transition-group";
@@ -10,7 +10,12 @@ interface Props {
 
 const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
   const [activeMenu, setActiveMenu] = useState("main");
-  const [menuHeight, setMenuHeight] = useState(184);
+  const [menuHeight, setMenuHeight] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current) setMenuHeight(ref.current.offsetHeight);
+  }, []);
 
   // We use this to calculate the rest of the tabs
   const calcHeight = (el: { offsetHeight: any }) => {
@@ -70,7 +75,9 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
         }}
         onEnter={calcHeight}
       >
-        <div className="menu">{DropdownItemsArray}</div>
+        <div className="menu" ref={ref}>
+          {DropdownItemsArray}
+        </div>
       </CSSTransition>
 
       <CSSTransition
