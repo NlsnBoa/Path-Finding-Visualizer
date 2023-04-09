@@ -3,7 +3,12 @@ import DropdownButton from "../DropdownButton";
 import DropdownMenu from "../DropdownMenu";
 import { useState } from "react";
 
-const Nav = () => {
+interface Props {
+  runAlgorithm: boolean;
+  toggleRunAlgorithm: () => void;
+}
+
+const Nav = ({ runAlgorithm, toggleRunAlgorithm }: Props) => {
   const [open, setOpen] = useState("false");
   const algorithms = ["Dikstras", "Breadth First", "Depth First"];
   const legendValues = ["Arrow", "Target", "Wall", "Path"];
@@ -33,7 +38,11 @@ const Nav = () => {
             secondaryValues={legendSecondaryValues}
           ></DropdownMenu>
         </DropdownButton>
-        <button type="button" className={styles.buttonMain}>
+        <button
+          type="button"
+          className={styles.buttonMain}
+          onClick={toggleRunAlgorithm}
+        >
           Visualize
         </button>
         <DropdownButton open={open} toggleOpen={toggleOpen} name="Algorthms">

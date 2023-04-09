@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiBullseye } from "react-icons/bi";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import styles from "./Node.module.css";
@@ -9,6 +9,7 @@ interface Props {
   bullsEyeStyling?: string;
   coordinate: string;
   mouseHover: boolean;
+  visited?: boolean;
   handleIsMouseUp: (newCoordinate: string) => void;
   handleIsMouseDown: (newCoordinate: string) => void;
   handleIsMouseHover: (newCoordinate: string) => void;
@@ -21,11 +22,21 @@ const Node = ({
   bullsEye = "notBullsEye",
   bullsEyeStyling = "noStyling",
   mouseHover,
+  visited = false,
   handleIsMouseUp,
   handleIsMouseDown,
   handleIsMouseHover,
 }: Props) => {
   const [wall, setWall] = useState("off");
+  const [visitedState, setVisitedState] = useState(false);
+
+  useEffect(() => {
+    if (visited) {
+      setVisitedState(true);
+    }
+  }, [visited]);
+
+  const visitedClassName = visitedState ? "visited" : "";
 
   const handleWallChangeClick = () => {
     console.log("coordinate updated", coordinate);
@@ -50,7 +61,9 @@ const Node = ({
         mouseHover &&
         handleIsMouseHover(coordinate)
       }
-      className={[styles.node, styles[wall]].join(" ")}
+      className={[styles.node, styles[wall], styles[visitedClassName]].join(
+        " "
+      )}
     >
       {bullsEye === coordinate && (
         <BiBullseye
