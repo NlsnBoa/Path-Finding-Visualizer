@@ -473,6 +473,7 @@ const Grid = ({
     rowNow = endNode.row;
     colNow = endNode.col;
 
+    // Convert Prev Matrix into path array
     while (1) {
       for (let index = 0; index < currentGrid.length; index++) {
         let currentRow = Math.floor(index / numCols);
@@ -496,6 +497,7 @@ const Grid = ({
       colNow = parseInt(partsStart[2], 10);
     }
 
+    // Display path
     for (let i = path.length - 1; i >= 0; i--) {
       const newNodeList = [...currentGrid]; // Create a shallow copy of the currentGrid array
 
