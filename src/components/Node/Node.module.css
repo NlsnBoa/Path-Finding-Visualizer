@@ -238,3 +238,71 @@
     border: none;
   }
 }
+
+
+/* Visited Path Animation */
+
+
+.visitedPath {
+  animation-name: visitedPathAnimation;
+  animation-duration: var(--visitedSpeed);
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+  @keyframes visitedPathAnimation {
+  0% {
+    transform: scale(.3);
+    border-radius: 100%;
+    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+    background: #6a040f;
+    border: none;
+  }
+
+  55% {
+    transform: scale(1);
+    border-radius: 40%;
+    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+    background: #6a040f;
+    border: none;
+  }
+
+  80% {
+    transform: scale(1.2);
+    border-radius: 10%;
+    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+    background: #ffba08;
+    border: none;
+  }
+
+  90% {
+    transform: scale(1.0);
+    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+    /* background-color: rgb(12, 53, 71); */
+    border-radius: 0%;
+    background: #dc2f02;
+    border: none;
+  }
+
+  95% {
+    transform: scale(1.0);
+    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+    /* background-color: rgb(12, 53, 71); */
+    border-radius: 0%;
+    background: #6a040f;
+    border: none;
+  }
+
+  100% {
+    transform: scale(1.0);
+    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+    /* background-color: rgb(12, 53, 71); */
+    border-radius: 0%;
+    background: #efefd0;
+    border: none;
+  }
+}

@@ -10,6 +10,7 @@ interface Props {
   coordinate: string;
   mouseHover: boolean;
   visited?: boolean;
+  visitedPath?: boolean;
   handleIsMouseUp: (newCoordinate: string) => void;
   handleIsMouseDown: (newCoordinate: string) => void;
   handleIsMouseHover: (newCoordinate: string) => void;
@@ -23,12 +24,14 @@ const Node = ({
   bullsEyeStyling = "noStyling",
   mouseHover,
   visited = false,
+  visitedPath = false,
   handleIsMouseUp,
   handleIsMouseDown,
   handleIsMouseHover,
 }: Props) => {
   const [wall, setWall] = useState("off");
   const [visitedState, setVisitedState] = useState(false);
+  const [visitedPathState, setVisitedPathState] = useState(false);
 
   useEffect(() => {
     if (visited) {
@@ -36,7 +39,14 @@ const Node = ({
     }
   }, [visited]);
 
+  useEffect(() => {
+    if (visitedPath) {
+      setVisitedPathState(true);
+    }
+  }, [visitedPath]);
+
   const visitedClassName = visitedState ? "visited" : "";
+  const visitedPathClassName = visitedPathState ? "visitedPath" : "";
 
   const handleWallChangeClick = () => {
     console.log("coordinate updated", coordinate);
@@ -61,9 +71,12 @@ const Node = ({
         mouseHover &&
         handleIsMouseHover(coordinate)
       }
-      className={[styles.node, styles[wall], styles[visitedClassName]].join(
-        " "
-      )}
+      className={[
+        styles.node,
+        styles[wall],
+        styles[visitedClassName],
+        styles[visitedPathClassName],
+      ].join(" ")}
     >
       {bullsEye === coordinate && (
         <BiBullseye
