@@ -466,8 +466,9 @@ const Grid = ({
             await sleep(5);
 
             // If the node that we are on is the end node lets return out of this function.
-            if (rowNext === endNode.row && colNow == endNode.col) {
-              // console.log("this is prev at the top", prev);
+            if (rowNext === endNode.row && colNext == endNode.col) {
+              console.log("this is prev at the top", prev);
+              await sleep(2000);
               findShortestPath(prev);
               return prev;
             }
@@ -475,7 +476,7 @@ const Grid = ({
         }
       }
     }
-    // console.log("this is prev at the bottom", prev);
+    console.log("this is prev at the bottom", prev);
     findShortestPath(prev);
     return;
   };
