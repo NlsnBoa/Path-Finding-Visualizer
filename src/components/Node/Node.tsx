@@ -5,6 +5,7 @@ import styles from "./Node.module.css";
 interface Props {
   arrow?: string;
   arrowStyling?: string;
+  // arrowPath?: string;
   bullsEye?: string;
   bullsEyeStyling?: string;
   coordinate: string;
@@ -19,6 +20,7 @@ interface Props {
 const Node = ({
   arrow = "notArrow",
   arrowStyling = "noStyling",
+  // arrowPath = "",
   coordinate,
   bullsEye = "notBullsEye",
   bullsEyeStyling = "noStyling",
@@ -32,6 +34,7 @@ const Node = ({
   const [wall, setWall] = useState("off");
   const [visitedState, setVisitedState] = useState(false);
   const [visitedPathState, setVisitedPathState] = useState(false);
+  // const [visitedArrowStyling, setVisitedArrowStyling] = useState("");
 
   useEffect(() => {
     if (visited) {
@@ -42,12 +45,12 @@ const Node = ({
   useEffect(() => {
     if (visitedPath) {
       setVisitedPathState(true);
+      // setVisitedArrowStyling(arrowPath);
     }
   }, [visitedPath]);
 
   const visitedClassName = visitedState ? "visited" : "";
   const visitedPathClassName = visitedPathState ? "visitedPath" : "";
-
   const handleWallChangeClick = () => {
     console.log("coordinate updated", coordinate);
     if (wall === "on") {

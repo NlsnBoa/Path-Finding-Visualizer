@@ -36,7 +36,7 @@
     padding: 0px;
     border: var(--node-border);
     box-sizing: border-box;
-    background-color: var(--text-color);
+    background-color: #004440;
     margin-left: 15px;
     margin-right: 10px;
 }

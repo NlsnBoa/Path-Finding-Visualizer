@@ -33,6 +33,8 @@ const Grid = ({
   const [arrowStyling, setArrowStyling] = useState("arrowStatic");
   const [objectInAction, setObjectInAction] = useState("none");
   const [currentGrid, setCurrentGrid] = useState<JSX.Element[]>([]);
+  const [wallGrid, setWallGrid] = useState<string[]>([]);
+  const [wallUpdated, setWallUpdate] = useState(0);
   const oo = 10000000;
 
   const handleIsMouseUp = (newCoordinate: string) => {
@@ -71,9 +73,19 @@ const Grid = ({
     }
   };
 
+  const updateWallGrid = (index: number) => {
+    console.log("wall length", wallGrid.length);
+    const newWallGrid = [...wallGrid]; // Create a shallow copy of the currentGrid array
+
+    if (newWallGrid[index] == " ") newWallGrid[index] = "WALL!";
+    else newWallGrid[index] = " ";
+    setWallGrid(newWallGrid);
+  };
+
   // create the list and give each node a coordinate value.
   const createNodeList = () => {
     const grid = [];
+    console.log("creating a nodeList");
 
     for (let row = 0; row < numRows; row++) {
       for (let col = 0; col < numCols; col++) {
@@ -124,21 +136,29 @@ const Grid = ({
 
   // This was used for testing and should honestly be deleted.
   const handleClick = (event: React.MouseEvent, key: number) => {
-    console.log("key index", key);
+    updateWallGrid(key);
   };
 
   // Convert the list of JSX elements to a grid (2D array)
-  const createGrid = (nodeList: React.ReactNode[]) => {
+  const createWallGrid = () => {
+    console.log("creating wallGrid");
+
     const grid = [];
     for (let row = 0; row < numRows; row++) {
-      const rowData = [];
       for (let col = 0; col < numCols; col++) {
-        rowData.push(nodeList[row * numCols + col]);
+        grid.push(" ");
       }
-      grid.push(rowData);
     }
-    return grid;
+    console.log("length", grid.length);
+
+    setWallGrid(grid);
+
+    console.log("wallgridLength", wallGrid.length);
   };
+
+  useEffect(() => {
+    createWallGrid();
+  }, []);
 
   //=====================================================================
 
@@ -148,13 +168,13 @@ const Grid = ({
   useEffect(() => {
     createNodeList();
   }, [bullsEye, setBullsEye, arrow, setArrow, isMouseHover, setIsMouseHover]);
+  // Create WallGrid no matter what
 
   // When runAlgorithm changes this useEffect should run the algorithm.
   useEffect(() => {
     if (runAlgorithm) {
-      const grid = createGrid(currentGrid);
       let numVerticies = numRows * numCols;
-      let path = runDikstras(grid, numVerticies);
+      runDikstras(numVerticies);
       // let path: Promise<string[][] | undefined> = runDikstras(
       //   grid,
       //   numVerticies
@@ -164,7 +184,7 @@ const Grid = ({
       //     findShortestPath(resolvedPath);
       //   }
       // });
-      findShortestPath(path);
+      // findShortestPath(path);
       toggleRunAlgorithm();
     }
   }, [runAlgorithm, toggleRunAlgorithm]);
@@ -176,8 +196,8 @@ const Grid = ({
 
   //==============================================
   const runBreadthFirstSearch = async () => {
-    console.log("we've entered dikstras\n");
-    console.log("arrow is", arrow);
+    // console.log("we've entered dikstras\n");
+    // console.log("arrow is", arrow);
     let currentRow;
     let currentCol;
     // Create Start and End node objects.
@@ -187,8 +207,8 @@ const Grid = ({
     const partsEnd = bullsEye.split("-");
     const rowEnd = parseInt(partsEnd[1], 10);
     const colEnd = parseInt(partsEnd[2], 10);
-    console.log("rowStart is", rowStart);
-    console.log("colStart is", colStart);
+    // console.log("rowStart is", rowStart);
+    // console.log("colStart is", colStart);
 
     const startNode = { row: 0, col: 0 };
     startNode.row = rowStart;
@@ -196,8 +216,8 @@ const Grid = ({
     const endNode = { row: 0, col: 0 };
     endNode.row = rowEnd;
     endNode.col = colEnd;
-    console.log("StartNode is", startNode.row, startNode.col);
-    console.log("EndNode is", endNode.row, endNode.col);
+    // console.log("StartNode is", startNode.row, startNode.col);
+    // console.log("EndNode is", endNode.row, endNode.col);
 
     const newNodeList = [...currentGrid]; // Create a shallow copy of the currentGrid array
 
@@ -206,8 +226,8 @@ const Grid = ({
       currentCol = index % numCols;
 
       if (currentRow === startNode.row && currentCol === startNode.col) {
-        console.log("we just set node", currentRow, currentCol);
-        console.log("index", index);
+        // console.log("we just set node", currentRow, currentCol);
+        // console.log("index", index);
         newNodeList[index] = React.cloneElement(currentGrid[index], {
           visited: true,
         });
@@ -235,7 +255,7 @@ const Grid = ({
         visited[row][col] = true;
 
         if (row === endNode.row && col === endNode.col) {
-          console.log("node is match when row and col are", row, col);
+          // console.log("node is match when row and col are", row, col);
 
           break;
         }
@@ -267,8 +287,8 @@ const Grid = ({
               currentCol = index % numCols;
 
               if (currentRow === row && currentCol === col) {
-                console.log("we just set node", currentRow, currentCol);
-                console.log("index", index);
+                // console.log("we just set node", currentRow, currentCol);
+                // console.log("index", index);
                 newNodeList[index] = React.cloneElement(currentGrid[index], {
                   visited: true,
                 });
@@ -283,7 +303,7 @@ const Grid = ({
 
             // If the node that we are on is the end node lets return out of this function.
             if (row === endNode.row && col == endNode.col) {
-              console.log("currentRow and col are", currentRow, currentCol);
+              // console.log("currentRow and col are", currentRow, currentCol);
               return;
             }
           }
@@ -293,14 +313,14 @@ const Grid = ({
   };
   //==============================================
 
-  const runDikstras = (grid: React.ReactNode[][], numVerticies: number) => {
+  const runDikstras = async (numVerticies: number) => {
     let currentRow;
     let currentCol;
     let numVisitedNodes = 0;
     let prev = Array.from({ length: numRows }, () =>
       Array.from({ length: numCols }, () => "nothing")
     );
-    console.log("entered Dikstras", prev);
+    // console.log("entered Dikstras", prev);
 
     // Create Start and End node objects.
     const partsStart = arrow.split("-");
@@ -309,8 +329,8 @@ const Grid = ({
     const partsEnd = bullsEye.split("-");
     const rowEnd = parseInt(partsEnd[1], 10);
     const colEnd = parseInt(partsEnd[2], 10);
-    console.log("rowStart is", rowStart);
-    console.log("colStart is", colStart);
+    // console.log("rowStart is", rowStart);
+    // console.log("colStart is", colStart);
 
     const startNode = { row: 0, col: 0 };
     startNode.row = rowStart;
@@ -318,8 +338,8 @@ const Grid = ({
     const endNode = { row: 0, col: 0 };
     endNode.row = rowEnd;
     endNode.col = colEnd;
-    console.log("StartNode is", startNode.row, startNode.col);
-    console.log("EndNode is", endNode.row, endNode.col);
+    // console.log("StartNode is", startNode.row, startNode.col);
+    // console.log("EndNode is", endNode.row, endNode.col);
 
     // Set up Distance matrix and set all values to infinity and set up the Visited Matrix
     const dist = Array.from({ length: numRows }, () =>
@@ -349,16 +369,16 @@ const Grid = ({
 
     while (!minHeap.isEmpty() && numVisitedNodes < numVerticies) {
       let vertex = minHeap.dequeue();
-      console.log(" ");
-      console.log("entered while", numVisitedNodes);
+      // console.log(" ");
+      // console.log("entered while", numVisitedNodes);
 
       // Check that Vertex exists
       if (vertex !== undefined) {
-        console.log("entered vertex if when", numVisitedNodes);
+        // console.log("entered vertex if when", numVisitedNodes);
         const { row, col } = vertex;
         let rowNow = row;
         let colNow = col;
-        console.log("rowNow colNow", rowNow, colNow);
+        // console.log("rowNow colNow", rowNow, colNow);
         if (visited[row][col]) continue;
 
         // If vertice hasn't been visited, visit it.
@@ -378,7 +398,7 @@ const Grid = ({
           const { row, col } = neighbor;
           let rowNext = row;
           let colNext = col;
-          console.log("rowNext colNext", row, col);
+          // console.log("rowNext colNext", row, col);
           // Calculate vertice distance from startNode and that will be its weight.
           // Weight(rowNext, colNext) = |startrow - rowNext| + |startcol - colNext|
           let rowDistance = startNode.row - rowNext;
@@ -387,8 +407,8 @@ const Grid = ({
           if (rowDistance < 0) rowDistance = rowDistance * -1;
           if (colDistance < 0) colDistance = colDistance * -1;
           let weight = rowDistance + colDistance;
-          console.log("rowNext colNext, weight", row, col, weight); // Check some stuff.
-          console.log(" dist[rowNow][colNow]", dist[rowNow][colNow]);
+          // console.log("rowNext colNext, weight", row, col, weight); // Check some stuff.
+          // console.log(" dist[rowNow][colNow]", dist[rowNow][colNow]);
 
           if (
             row >= 0 &&
@@ -398,7 +418,24 @@ const Grid = ({
             !visited[row][col] &&
             dist[rowNow][colNow] + weight < dist[rowNext][colNext]
           ) {
-            console.log("we got in", row, col);
+            // console.log("we got in", row, col);
+            let stop = false;
+
+            // Check if this is a wall
+            for (let index = 0; index < wallGrid.length; index++) {
+              let wallRow = Math.floor(index / numCols);
+              let wallCol = index % numCols;
+
+              if (
+                wallRow === rowNext &&
+                wallCol === colNext &&
+                wallGrid[index] == "WALL!"
+              ) {
+                stop = true;
+              }
+            }
+            // if, wall skip
+            if (stop) continue;
 
             prev[rowNext][colNext] = `node-${rowNow}-${colNow}`;
             dist[rowNext][colNext] = dist[rowNow][colNow] + weight;
@@ -407,43 +444,44 @@ const Grid = ({
               dist[rowNext][colNext]
             );
 
-            // const newNodeList = [...currentGrid]; // Create a shallow copy of the currentGrid array
+            const newNodeList = [...currentGrid]; // Create a shallow copy of the currentGrid array
 
-            // for (let index = 0; index < currentGrid.length; index++) {
-            //   currentRow = Math.floor(index / numCols);
-            //   currentCol = index % numCols;
+            for (let index = 0; index < currentGrid.length; index++) {
+              currentRow = Math.floor(index / numCols);
+              currentCol = index % numCols;
 
-            //   if (currentRow === rowNext && currentCol === colNext) {
-            //     console.log("we just set node", currentRow, currentCol);
-            //     console.log("index", index);
-            //     newNodeList[index] = React.cloneElement(currentGrid[index], {
-            //       visited: true,
-            //     });
-            //   }
-            // }
+              if (currentRow === rowNext && currentCol === colNext) {
+                // console.log("we just set node", currentRow, currentCol);
+                // console.log("index", index);
+                newNodeList[index] = React.cloneElement(currentGrid[index], {
+                  visited: true,
+                });
+              }
+            }
 
-            // // Update the nodeList in state
-            // setCurrentGrid(newNodeList);
+            // Update the nodeList in state
+            setCurrentGrid(newNodeList);
 
-            // // Simulate a delay to visualize the algorithm
-            // await sleep(5);
+            // Simulate a delay to visualize the algorithm
+            await sleep(5);
 
             // If the node that we are on is the end node lets return out of this function.
             if (rowNext === endNode.row && colNow == endNode.col) {
-              console.log("this is prev at the top", prev);
+              // console.log("this is prev at the top", prev);
+              findShortestPath(prev);
               return prev;
             }
           }
         }
       }
     }
-    console.log("this is prev at the bottom", prev);
-
-    return prev;
+    // console.log("this is prev at the bottom", prev);
+    findShortestPath(prev);
+    return;
   };
 
   const findShortestPath = async (prev: string[][]) => {
-    console.log("entered shortestPath");
+    // console.log("entered shortestPath");
 
     //let path = Array.from({ length: numCols * numRows }, () => -1);//
     let path = [];
@@ -458,8 +496,8 @@ const Grid = ({
     const partsEnd = bullsEye.split("-");
     const rowEnd = parseInt(partsEnd[1], 10);
     const colEnd = parseInt(partsEnd[2], 10);
-    console.log("rowStart is", rowStart);
-    console.log("colStart is", colStart);
+    // console.log("rowStart is", rowStart);
+    // console.log("colStart is", colStart);
 
     const startNode = { row: 0, col: 0 };
     startNode.row = rowStart;
@@ -467,8 +505,8 @@ const Grid = ({
     const endNode = { row: 0, col: 0 };
     endNode.row = rowEnd;
     endNode.col = colEnd;
-    console.log("StartNode is", startNode.row, startNode.col);
-    console.log("EndNode is", endNode.row, endNode.col);
+    // console.log("StartNode is", startNode.row, startNode.col);
+    // console.log("EndNode is", endNode.row, endNode.col);
 
     rowNow = endNode.row;
     colNow = endNode.col;
@@ -503,6 +541,7 @@ const Grid = ({
 
       newNodeList[path[i]] = React.cloneElement(currentGrid[path[i]], {
         visitedPath: true,
+        // arrowPath: "arrowPathDropUp",
       });
 
       // Update the nodeList in state
@@ -515,12 +554,11 @@ const Grid = ({
 
   return (
     <div className={styles.grid}>
-      {/* {currentGrid.map((element, key) => (
+      {currentGrid.map((element, key) => (
         <div onClick={(event) => handleClick(event, key)} key={key}>
           {element}
         </div>
-      ))} */}
-      {currentGrid}
+      ))}
     </div>
   );
 };
