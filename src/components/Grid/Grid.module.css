@@ -4,10 +4,10 @@
     grid-template-columns: repeat(50, 1fr);
     grid-gap: 2px;
     width: 96%;
-    height: 43vw;
+    height: 40vw;
     max-width: 100%;
     box-sizing: border-box;
-    padding: 3px;
+    padding: 5px;
     overflow:auto;
     border: var(--grid-border);
     border-radius: 5px;
