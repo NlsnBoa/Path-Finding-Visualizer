@@ -12,6 +12,7 @@ interface Props {
   mouseHover: boolean;
   visited?: boolean;
   visitedPath?: boolean;
+  clear?: boolean;
   handleIsMouseUp: (newCoordinate: string) => void;
   handleIsMouseDown: (newCoordinate: string) => void;
   handleIsMouseHover: (newCoordinate: string) => void;
@@ -27,6 +28,7 @@ const Node = ({
   mouseHover,
   visited = false,
   visitedPath = false,
+  // clear = false,
   handleIsMouseUp,
   handleIsMouseDown,
   handleIsMouseHover,
@@ -34,23 +36,28 @@ const Node = ({
   const [wall, setWall] = useState("off");
   const [visitedState, setVisitedState] = useState(false);
   const [visitedPathState, setVisitedPathState] = useState(false);
+  // const [clearState, setClearState] = useState(false);
   // const [visitedArrowStyling, setVisitedArrowStyling] = useState("");
 
+  // We need to fix this ASAP, this has been causing infinite loops
   useEffect(() => {
+    console.log("loop1");
     if (visited) {
       setVisitedState(true);
     }
   }, [visited]);
 
+  // We need to fix this ASAP, this has been causing infinite loops
   useEffect(() => {
+    console.log("loop2");
     if (visitedPath) {
       setVisitedPathState(true);
-      // setVisitedArrowStyling(arrowPath);
     }
   }, [visitedPath]);
 
-  const visitedClassName = visitedState ? "visited" : "";
-  const visitedPathClassName = visitedPathState ? "visitedPath" : "";
+  let visitedClassName = visitedState ? "visited" : "";
+  let visitedPathClassName = visitedPathState ? "visitedPath" : "";
+
   const handleWallChangeClick = () => {
     console.log("coordinate updated", coordinate);
     if (wall === "on") {

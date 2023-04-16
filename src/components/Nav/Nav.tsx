@@ -5,10 +5,17 @@ import { useState } from "react";
 
 interface Props {
   runAlgorithm: boolean;
+  clearState: boolean;
   toggleRunAlgorithm: () => void;
+  toggleClearState: () => void;
 }
 
-const Nav = ({ runAlgorithm, toggleRunAlgorithm }: Props) => {
+const Nav = ({
+  runAlgorithm,
+  clearState,
+  toggleRunAlgorithm,
+  toggleClearState,
+}: Props) => {
   const [open, setOpen] = useState("false");
   const algorithms = ["Dikstras", "Breadth First", "Depth First"];
   const legendValues = ["Arrow", "Target", "Wall", "Path"];
@@ -45,13 +52,15 @@ const Nav = ({ runAlgorithm, toggleRunAlgorithm }: Props) => {
         >
           Visualize
         </button>
-        <DropdownButton open={open} toggleOpen={toggleOpen} name="Algorthms">
+        <DropdownButton open={open} toggleOpen={toggleOpen} name="Algorithm">
           <DropdownMenu primaryValues={algorithms}></DropdownMenu>
         </DropdownButton>
         <DropdownButton open={open} toggleOpen={toggleOpen} name="Speed">
           <DropdownMenu primaryValues={speedValues}></DropdownMenu>
         </DropdownButton>
-        <button className={styles.buttonSubset}>Clear Board</button>
+        <button className={styles.buttonSubset} onClick={toggleClearState}>
+          Clear Board
+        </button>
       </div>
     </div>
   );

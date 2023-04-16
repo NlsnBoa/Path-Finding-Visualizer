@@ -14,38 +14,6 @@
 }
 /* ================================================ */
 
-/* Wall Animation */
-.on {
-    animation-name: wallAnimation;
-    animation-duration: 0.3s;
-    animation-timing-function: ease-out;
-    animation-delay: 0;
-    animation-direction: alternate;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-}
-
-@keyframes wallAnimation {
-  0% {
-    transform: scale(.3);
-    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
-    background: var(--wall-color-0);
-  }
-
-  50% {
-    transform: scale(1.2);
-    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
-    background: var(--wall-color-50);
-  }
-
-  100% {
-    transform: scale(1.0);
-    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
-    /* background-color: rgb(12, 53, 71); */
-    background: var(--wall-color-100);
-  }
-}
 
 /* ================================================ */
 
@@ -307,3 +275,37 @@
   }
 }
 
+/* ==================== */
+
+/* Wall Animation */
+.on {
+  animation-name: wallAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes wallAnimation {
+0% {
+  transform: scale(.3);
+  /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+  background: var(--wall-color-0);
+}
+
+50% {
+  transform: scale(1.2);
+  /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+  background: var(--wall-color-50);
+}
+
+100% {
+  transform: scale(1.0);
+  /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+  /* background-color: rgb(12, 53, 71); */
+  background: var(--wall-color-100);
+}
+}

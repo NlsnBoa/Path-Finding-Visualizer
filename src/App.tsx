@@ -7,9 +7,13 @@ import Nav from "./components/Nav";
 // the other components and main.tsx
 function App() {
   const [runAlgorithm, setRunAlgorithm] = useState(false);
+  const [clearState, setClearState] = useState(false);
 
   const toggleRunAlgorithm = () => {
     setRunAlgorithm(!runAlgorithm);
+  };
+  const toggleClearState = () => {
+    setClearState(!clearState);
   };
 
   return (
@@ -17,16 +21,20 @@ function App() {
       <div className="app">
         <Nav
           runAlgorithm={runAlgorithm}
+          clearState={clearState}
           toggleRunAlgorithm={toggleRunAlgorithm}
+          toggleClearState={toggleClearState}
         ></Nav>
         <div className="container">
           <Grid
+            clearState={clearState}
             target={"node-5-35"}
             start={"node-9-15"}
             numCols={50}
             numRows={20}
             runAlgorithm={runAlgorithm}
             toggleRunAlgorithm={toggleRunAlgorithm}
+            toggleClearState={toggleClearState}
           ></Grid>
         </div>
       </div>

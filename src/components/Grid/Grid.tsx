@@ -4,12 +4,14 @@ import Node from "../Node";
 import { PriorityQueue } from "./PriorityQueue";
 
 interface Props {
+  clearState: boolean;
   numRows: number;
   numCols: number;
   target: string;
   start: string;
   runAlgorithm: boolean;
   toggleRunAlgorithm: () => void;
+  toggleClearState: () => void;
 }
 
 // Notes: I have come up with two ways of keeping track of the nodes positions
@@ -19,12 +21,14 @@ interface Props {
 // The other way is found within the Node component where I am passing their coordinate
 // as an argument during their creation.
 const Grid = ({
+  clearState,
   numRows,
   numCols,
   target,
   start,
   runAlgorithm,
   toggleRunAlgorithm,
+  toggleClearState,
 }: Props) => {
   const [isMouseHover, setIsMouseHover] = useState(false);
   const [bullsEye, setBullsEye] = useState(target);
@@ -188,6 +192,30 @@ const Grid = ({
       toggleRunAlgorithm();
     }
   }, [runAlgorithm, toggleRunAlgorithm]);
+
+  // When we want to clear the board of the path and algoritm fallout.
+  useEffect(() => {
+    if (clearState) {
+      console.log("ineffect1");
+
+      const newNodeList = [...currentGrid]; // Create a shallow copy of the currentGrid array
+
+      for (let index = 0; index < currentGrid.length; index++) {
+        let currentRow = Math.floor(index / numCols);
+        let currentCol = index % numCols;
+
+        newNodeList[index] = React.cloneElement(currentGrid[index], {
+          visited: false,
+          visitedPath: false,
+        });
+      }
+
+      // Update the nodeList in state
+      setCurrentGrid(newNodeList);
+      createNodeList();
+      toggleClearState();
+    }
+  }, [clearState, toggleClearState]);
 
   // This ensures that the visualization is slow enough for the user to see.
   const sleep = (ms: number) => {
