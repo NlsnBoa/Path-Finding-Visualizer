@@ -38,7 +38,6 @@ const Grid = ({
   const [objectInAction, setObjectInAction] = useState("none");
   const [currentGrid, setCurrentGrid] = useState<JSX.Element[]>([]);
   const [wallGrid, setWallGrid] = useState<string[]>([]);
-  // const [wallUpdated, setWallUpdate] = useState(0);
   const oo = 10000000;
 
   const handleIsMouseUp = (newCoordinate: string) => {
@@ -160,11 +159,10 @@ const Grid = ({
     console.log("wallgridLength", wallGrid.length);
   };
 
+  //======================useEffects=============================
   useEffect(() => {
     createWallGrid();
   }, []);
-
-  //=====================================================================
 
   // Super important for rendering the grid and all of the nodes. 
   useEffect(() => {
@@ -214,13 +212,14 @@ const Grid = ({
       // createNodeList();
     }
   }, [clearState]);
+  //==============================================
 
   // This ensures that the visualization is slow enough for the user to see.
   const sleep = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
 
-  //==============================================
+  //========================Algorithms==========================
   const runBreadthFirstSearch = async () => {
     // console.log("we've entered dikstras\n");
     // console.log("arrow is", arrow);
@@ -416,8 +415,8 @@ const Grid = ({
         const neighbors = [
           { row: row + 1, col },
           { row, col: col + 1 },
-          { row: row - 1, col },
           { row, col: col - 1 },
+          { row: row - 1, col },
         ];
 
         for (const neighbor of neighbors) {
@@ -578,7 +577,7 @@ const Grid = ({
       await sleep(5);
     }
   };
-
+  //==============================================
   return (
     <div className={styles.grid}>
       {currentGrid.map((element, key) => (
