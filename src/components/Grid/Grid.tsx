@@ -38,7 +38,7 @@ const Grid = ({
   const [objectInAction, setObjectInAction] = useState("none");
   const [currentGrid, setCurrentGrid] = useState<JSX.Element[]>([]);
   const [wallGrid, setWallGrid] = useState<string[]>([]);
-  const [wallUpdated, setWallUpdate] = useState(0);
+  // const [wallUpdated, setWallUpdate] = useState(0);
   const oo = 10000000;
 
   const handleIsMouseUp = (newCoordinate: string) => {
@@ -166,12 +166,10 @@ const Grid = ({
 
   //=====================================================================
 
-  // Stores the newly created grid in a new variable so that we can
-  // use .map to ensure we can catch a click event.
-  // const grid = createGrid();
+  // Super important for rendering the grid and all of the nodes. 
   useEffect(() => {
     createNodeList();
-  }, [bullsEye, setBullsEye, arrow, setArrow, isMouseHover, setIsMouseHover]);
+  }, [bullsEye, setBullsEye, arrow, setArrow, isMouseHover, setIsMouseHover, clearState]);
   // Create WallGrid no matter what
 
   // When runAlgorithm changes this useEffect should run the algorithm.
@@ -191,9 +189,9 @@ const Grid = ({
       // findShortestPath(path);
       toggleRunAlgorithm();
     }
-  }, [runAlgorithm, toggleRunAlgorithm]);
+  }, [runAlgorithm]);
 
-  // When we want to clear the board of the path and algoritm fallout.
+  // When we want to clear the board of the visited and visitedPath css.
   useEffect(() => {
     if (clearState) {
       console.log("ineffect1");
@@ -205,17 +203,17 @@ const Grid = ({
         let currentCol = index % numCols;
 
         newNodeList[index] = React.cloneElement(currentGrid[index], {
-          visited: false,
-          visitedPath: false,
+          clear: true,
         });
       }
-
       // Update the nodeList in state
       setCurrentGrid(newNodeList);
-      createNodeList();
+
       toggleClearState();
+
+      // createNodeList();
     }
-  }, [clearState, toggleClearState]);
+  }, [clearState]);
 
   // This ensures that the visualization is slow enough for the user to see.
   const sleep = (ms: number) => {

@@ -28,7 +28,7 @@ const Node = ({
   mouseHover,
   visited = false,
   visitedPath = false,
-  // clear = false,
+  clear = false,
   handleIsMouseUp,
   handleIsMouseDown,
   handleIsMouseHover,
@@ -39,25 +39,29 @@ const Node = ({
   // const [clearState, setClearState] = useState(false);
   // const [visitedArrowStyling, setVisitedArrowStyling] = useState("");
 
-  // We need to fix this ASAP, this has been causing infinite loops
   useEffect(() => {
-    console.log("loop1");
     if (visited) {
       setVisitedState(true);
     }
   }, [visited]);
 
-  // We need to fix this ASAP, this has been causing infinite loops
   useEffect(() => {
-    console.log("loop2");
     if (visitedPath) {
       setVisitedPathState(true);
     }
   }, [visitedPath]);
 
+  useEffect(() => {
+    if (clear) {
+      setVisitedPathState(false)
+      setVisitedState(false);
+    }
+  }, [clear]);
+
+
   let visitedClassName = visitedState ? "visited" : "";
   let visitedPathClassName = visitedPathState ? "visitedPath" : "";
-
+  
   const handleWallChangeClick = () => {
     console.log("coordinate updated", coordinate);
     if (wall === "on") {
