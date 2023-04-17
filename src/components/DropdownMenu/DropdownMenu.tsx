@@ -11,10 +11,12 @@ interface Props {
 const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
   const [activeMenu, setActiveMenu] = useState("main");
   const [menuHeight, setMenuHeight] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const mainMenuRef = useRef<HTMLDivElement>(null);
+  const arrowPageMenuRef = useRef<HTMLDivElement>(null);
+  const targetPageMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (ref.current) setMenuHeight(ref.current.offsetHeight);
+    if (mainMenuRef.current) setMenuHeight(mainMenuRef.current.offsetHeight);
   }, []);
 
   // We use this to calculate the rest of the tabs
@@ -74,9 +76,10 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
           exit: styles.menuPrimaryExit,
           exitActive: styles.menuPrimaryExitActive,
         }}
-        onEnter={calcHeight}
+        onEnter={() => calcHeight(mainMenuRef.current!)}
+        nodeRef={mainMenuRef}
       >
-        <div className="menu" ref={ref}>
+        <div className="menu" ref={mainMenuRef} >
           {DropdownItemsArray}
         </div>
       </CSSTransition>
@@ -91,9 +94,10 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
           exit: styles.menuSecondaryExit,
           exitActive: styles.menuSecondaryExitActive,
         }}
-        onEnter={calcHeight}
+        onEnter={() => calcHeight(arrowPageMenuRef.current!)}
+        nodeRef={arrowPageMenuRef}
       >
-        <div className="menu">
+        <div className="menu" ref={arrowPageMenuRef}>
           <DropdownItem goToMenu={"main"} handleMenuSwitch={handleMenuSwitch}>
             {"Back"}
           </DropdownItem>
@@ -113,9 +117,10 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
           exit: styles.menuThirdExit,
           exitActive: styles.menuThirdExitActive,
         }}
-        onEnter={calcHeight}
+        onEnter={() => calcHeight(targetPageMenuRef.current!)}
+        nodeRef={targetPageMenuRef}
       >
-        <div className="menu">
+        <div className="menu" ref={targetPageMenuRef}>
           <DropdownItem goToMenu={"main"} handleMenuSwitch={handleMenuSwitch}>
             {"The Target is what you goal is!"}
           </DropdownItem>
