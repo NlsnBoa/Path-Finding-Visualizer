@@ -77,7 +77,7 @@ const Grid = ({
   };
 
   const updateWallGrid = (index: number) => {
-    console.log("wall length", wallGrid.length);
+    // console.log("wall length", wallGrid.length);
     const newWallGrid = [...wallGrid]; // Create a shallow copy of the currentGrid array
 
     if (newWallGrid[index] == " ") newWallGrid[index] = "WALL!";
@@ -138,7 +138,7 @@ const Grid = ({
   };
 
   // This was used for testing and should honestly be deleted.
-  const handleClick = (event: React.MouseEvent, key: number) => {
+  const handleClick = (key: number) => {
     updateWallGrid(key);
   };
 
@@ -159,6 +159,14 @@ const Grid = ({
     console.log("wallgridLength", wallGrid.length);
   };
 
+  const handleWallConflict = (key: number) => {
+    let node = `node-${Math.floor(key / numCols)}-${key % numCols}`;
+
+    if ((bullsEye === node || arrow === node) && wallGrid[key] === "WALL!") 
+    {
+      handleClick(key)
+    }
+  }
   //======================useEffects=============================
   useEffect(() => {
     createWallGrid();
@@ -581,7 +589,7 @@ const Grid = ({
   return (
     <div className={styles.grid}>
       {currentGrid.map((element, key) => (
-        <div onClick={(event) => handleClick(event, key)} key={key}>
+        <div onClick={(event) => handleClick(key)} onMouseUp={()=> handleWallConflict(key)} key={key}>
           {element}
         </div>
       ))}

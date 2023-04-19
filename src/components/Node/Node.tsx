@@ -91,11 +91,13 @@ const Node = ({
         styles[visitedClassName],
         styles[visitedPathClassName],
       ].join(" ")}
+      draggable='false'
     >
       {bullsEye === coordinate && (
         <BiBullseye
           onMouseDown={() => handleIsMouseDown("notBullsEye")}
           className={styles[bullsEyeStyling]}
+          
         ></BiBullseye>
       )}
 
