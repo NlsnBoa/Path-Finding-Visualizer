@@ -11,7 +11,14 @@
   border: var(--node-border);
   box-sizing: border-box;
   background-color: black;
+
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
+
 /* ================================================ */
 
 
@@ -78,11 +85,12 @@
     padding: 0px;
   }
 }
+
 /* =================== */
 
 /* Arrow Styling */
 .arrowStatic {
-  color:#ffba08 ;
+  color: #ffba08;
   box-sizing: border-box;
   height: 1.5vw;
   width: 1.5vw;
@@ -154,7 +162,7 @@
   animation-play-state: running;
 }
 
-  @keyframes visitedAnimation {
+@keyframes visitedAnimation {
   0% {
     transform: scale(.3);
     border-radius: 100%;
@@ -222,7 +230,7 @@
   animation-play-state: running;
 }
 
-  @keyframes visitedPathAnimation {
+@keyframes visitedPathAnimation {
   0% {
     transform: scale(.3);
     border-radius: 100%;
@@ -290,22 +298,22 @@
 }
 
 @keyframes wallAnimation {
-0% {
-  transform: scale(.3);
-  /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
-  background: var(--wall-color-0);
-}
+  0% {
+    transform: scale(.3);
+    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+    background: var(--wall-color-0);
+  }
 
-50% {
-  transform: scale(1.2);
-  /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
-  background: var(--wall-color-50);
-}
+  50% {
+    transform: scale(1.2);
+    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+    background: var(--wall-color-50);
+  }
 
-100% {
-  transform: scale(1.0);
-  /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
-  /* background-color: rgb(12, 53, 71); */
-  background: var(--wall-color-100);
-}
+  100% {
+    transform: scale(1.0);
+    /* background: radial-gradient(at right bottom, rgb(148, 163, 184), rgb(241, 245, 249), rgb(120, 113, 108)); */
+    /* background-color: rgb(12, 53, 71); */
+    background: var(--wall-color-100);
+  }
 }
