@@ -102,7 +102,7 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
             {"Back"}
           </DropdownItem>
           <DropdownItem handleMenuSwitch={handleMenuSwitch}>
-            {"The Arrow tells you where you're starting from!"}
+            {"The Arrow is where you're starting from!"}
           </DropdownItem>
         </div>
       </CSSTransition>
@@ -121,8 +121,11 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
         nodeRef={targetPageMenuRef}
       >
         <div className="menu" ref={targetPageMenuRef}>
-          <DropdownItem goToMenu={"main"} handleMenuSwitch={handleMenuSwitch}>
-            {"The Target is what you goal is!"}
+        <DropdownItem goToMenu={"main"} handleMenuSwitch={handleMenuSwitch}>
+            {"Back"}
+          </DropdownItem>
+          <DropdownItem handleMenuSwitch={handleMenuSwitch}>
+            {"The Target is what you are trying to get to!"}
           </DropdownItem>
         </div>
       </CSSTransition>
