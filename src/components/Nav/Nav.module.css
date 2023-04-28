@@ -22,7 +22,7 @@ h1 {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color:transparent;
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
 
 .menu {
@@ -83,4 +83,33 @@ h1 {
     color: var(--hovered-text-color);
     transition: 0.3s;
    
+}
+
+.logo {
+    height: 40%;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+.logo:hover {
+    transform-origin: 21.25px 22.5px;
+    animation-name: logoRotation;
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.25);
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes logoRotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+
 }
