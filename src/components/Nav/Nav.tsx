@@ -37,7 +37,7 @@ const Nav = ({
 
   return (
     <div className={styles.container}>
-      {/* <img className={styles.logo} src="./src/assets/images/PathfindingVisualizerLogo.svg" alt="Logo: Target shot with an arrow"  /> */}
+      <img className={styles.logo} src="./src/assets/images/PathfindingVisualizerLogo.svg" alt="Logo: Target shot with an arrow"  />
       <h1 className={styles.h1}>Pathfinding Visualizer</h1>
       <div className={styles.menu}>
         <DropdownButton open={open} toggleOpen={toggleOpen} name="Legend">
