@@ -86,7 +86,8 @@ h1 {
 }
 
 .logo {
-    height: 40%;
+    height: 44px;
+    width: 44px;
     margin-left: 15px;
     margin-bottom: 5px;
 }
