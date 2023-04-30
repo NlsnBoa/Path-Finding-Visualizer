@@ -7,11 +7,13 @@ interface Props {
   children: ReactNode;
   goToMenu?: string;
   icon?: string;
+  description?: boolean;
   handleMenuSwitch: (goToMenu: string) => void;
 }
 
 const DropdownItem = ({
   children,
+  description = false,
   goToMenu = "",
   icon = "",
   handleMenuSwitch,
@@ -30,23 +32,49 @@ const DropdownItem = ({
   };
 
   return (
-    <div
-      className={styles.menuItem}
-      onClick={() => goToMenu !== "" && handleMenuSwitch(goToMenu)}
-    >
-      {icon !== "" && generateIcon(icon)}
-      {children}
-      {icon !== "" && (
-        <span className="iconButton">
-          {
-            <MdKeyboardArrowRight
-              className={styles.keyBoardArrow}
-            ></MdKeyboardArrowRight>
-          }
-        </span>
-      )}
-    </div>
+    <>
+      {
+        (description === false) && 
+        <div
+          className={styles.menuItem}
+          onClick={() => goToMenu !== "" && handleMenuSwitch(goToMenu)}
+        >
+          {icon !== "" && generateIcon(icon)}
+          {children}
+          {icon !== "" && (
+            <span className="iconButton">
+              {
+                <MdKeyboardArrowRight
+                  className={styles.keyBoardArrow}
+                ></MdKeyboardArrowRight>
+              }
+            </span>
+          )}
+        </div>
+      }
+      {
+        (description === true) && 
+        <div
+          className={styles.menuItemDescription}
+          onClick={() => goToMenu !== "" && handleMenuSwitch(goToMenu)}
+        >
+          {icon !== "" && generateIcon(icon)}
+          {children}
+          {icon !== "" && (
+            <span className="iconButton">
+              {
+                <MdKeyboardArrowRight
+                  className={styles.keyBoardArrow}
+                ></MdKeyboardArrowRight>
+              }
+            </span>
+          )}
+        </div>
+      }
+    </>
+
   );
+
 };
 
 export default DropdownItem;

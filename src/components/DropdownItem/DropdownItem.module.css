@@ -9,12 +9,33 @@
     font-family: 'Outfit', sans-serif;
 }
 
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.menuItemDescription {
+    display: flex;
+    flex-direction: column;
+    /* background-color: var(--nav-background-color); */
+    /* color: var(--hovered-text-color); */
+    min-height: 30px;
+    max-height: 200px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding: 0.5rem;
+    font-family: 'Outfit', sans-serif;
+}
+
 .menuItem:hover {
     /* transition: .2s; */
     background-color: var(--nav-background-color);
     color: var(--hovered-text-color);
     cursor: pointer;
 }
+
 
 /* ICON Styling */
 

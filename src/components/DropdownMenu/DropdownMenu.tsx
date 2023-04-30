@@ -14,6 +14,8 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
   const mainMenuRef = useRef<HTMLDivElement>(null);
   const arrowPageMenuRef = useRef<HTMLDivElement>(null);
   const targetPageMenuRef = useRef<HTMLDivElement>(null);
+  const wallPageMenuRef = useRef<HTMLDivElement>(null);
+  const pathPageMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (mainMenuRef.current) setMenuHeight(mainMenuRef.current.offsetHeight);
@@ -101,8 +103,8 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
           <DropdownItem goToMenu={"main"} handleMenuSwitch={handleMenuSwitch}>
             {"Back"}
           </DropdownItem>
-          <DropdownItem handleMenuSwitch={handleMenuSwitch}>
-            {"The Arrow is where you're starting from!"}
+          <DropdownItem description={true} handleMenuSwitch={handleMenuSwitch}>
+           <p>The Arrow is where you're starting from! </p> <br /> <p>Change its position by holding down the left mouse button and moving it around!</p> 
           </DropdownItem>
         </div>
       </CSSTransition>
@@ -124,8 +126,54 @@ const DropdownMenu = ({ primaryValues, secondaryValues = [] }: Props) => {
         <DropdownItem goToMenu={"main"} handleMenuSwitch={handleMenuSwitch}>
             {"Back"}
           </DropdownItem>
-          <DropdownItem handleMenuSwitch={handleMenuSwitch}>
-            {"The Target is what you are trying to get to!"}
+          <DropdownItem description={true} handleMenuSwitch={handleMenuSwitch}>
+            <p>The Target is what you are trying to get to!</p> <br /><p>Change its position by holding down the left mouse button and moving it around!</p>
+          </DropdownItem>
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={activeMenu === "WallPage"}
+        unmountOnExit
+        timeout={500}
+        classNames={{
+          enter: styles.menuThirdEnter,
+          enterActive: styles.menuThirdEnterActive,
+          exit: styles.menuThirdExit,
+          exitActive: styles.menuThirdExitActive,
+        }}
+        onEnter={() => calcHeight(wallPageMenuRef.current!)}
+        nodeRef={wallPageMenuRef}
+      >
+        <div className="menu" ref={wallPageMenuRef}>
+        <DropdownItem goToMenu={"main"} handleMenuSwitch={handleMenuSwitch}>
+            {"Back"}
+          </DropdownItem>
+          <DropdownItem description={true} handleMenuSwitch={handleMenuSwitch}>
+            <p>The Walls block your path to the Target!</p> <br /><p>Click on the tiles to set up obstacles!</p>
+          </DropdownItem>
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={activeMenu === "PathPage"}
+        unmountOnExit
+        timeout={500}
+        classNames={{
+          enter: styles.menuThirdEnter,
+          enterActive: styles.menuThirdEnterActive,
+          exit: styles.menuThirdExit,
+          exitActive: styles.menuThirdExitActive,
+        }}
+        onEnter={() => calcHeight(pathPageMenuRef.current!)}
+        nodeRef={pathPageMenuRef}
+      >
+        <div className="menu" ref={pathPageMenuRef}>
+        <DropdownItem goToMenu={"main"} handleMenuSwitch={handleMenuSwitch}>
+            {"Back"}
+          </DropdownItem>
+          <DropdownItem description={true} handleMenuSwitch={handleMenuSwitch}>
+          <p>The Path shows you the fastest way to the Target!</p> 
           </DropdownItem>
         </div>
       </CSSTransition>
