@@ -17,11 +17,12 @@ h1 {
     margin-bottom: 30px;
     font-family: 'Outfit', sans-serif;
     font-size: 35px;
-    background:  var(--text-color); 
-    -webkit-background-clip: text;
+    color: var(--text-color);
+    /* background:  var(--text-color);  */
+    /* -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    color:transparent;
+    color:transparent; */
     /* margin-left: 20px; */
 }
 
@@ -113,4 +114,12 @@ h1 {
         transform: rotate(360deg);
     }
 
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-direction: row;
+    align-items: center;
 }
