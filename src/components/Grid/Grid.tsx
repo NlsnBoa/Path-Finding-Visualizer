@@ -374,6 +374,27 @@ const Grid = ({
     // console.log("StartNode is", startNode.row, startNode.col);
     // console.log("EndNode is", endNode.row, endNode.col);
 
+    const newNodeList = [...currentGrid]; // Create a shallow copy of the currentGrid array
+
+    for (let index = 0; index < currentGrid.length; index++) {
+      currentRow = Math.floor(index / numCols);
+      currentCol = index % numCols;
+
+      if (currentRow === startNode.row && currentCol === startNode.col) {
+        // console.log("we just set node", currentRow, currentCol);
+        // console.log("index", index);
+        newNodeList[index] = React.cloneElement(currentGrid[index], {
+          visited: true,
+        });
+      }
+    }
+
+    // Update the nodeList in state
+    setCurrentGrid(newNodeList);
+
+    // Simulate a delay to visualize the algorithm
+    await sleep(5);
+
     // Set up Distance matrix and set all values to infinity and set up the Visited Matrix
     const dist = Array.from({ length: numRows }, () =>
       Array.from({ length: numCols }, () => oo)
