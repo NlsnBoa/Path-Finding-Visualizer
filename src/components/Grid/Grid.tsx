@@ -19,7 +19,7 @@ interface Props {
 // as I am loading each node to the screen I am mapping them and checking
 // for their key and event values
 // The other way is found within the Node component where I am passing their coordinate
-// as an argument during their creation.
+// as an argument during their creation
 const Grid = ({
   clearState,
   numRows,
