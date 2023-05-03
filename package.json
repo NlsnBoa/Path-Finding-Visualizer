@@ -2,7 +2,7 @@
   "homepage": "https://NlsnBoa.github.io/Path-Finding-Visualizer",
   "name": "path-finding-visualizer",
   "private": true,
-  "version": "1.0.1",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
