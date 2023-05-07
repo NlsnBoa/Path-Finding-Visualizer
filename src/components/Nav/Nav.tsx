@@ -4,15 +4,13 @@ import DropdownMenu from "../DropdownMenu";
 import { useState } from "react";
 
 interface Props {
-  runAlgorithm: boolean;
-  clearState: boolean;
+  toggleGenerateMaze: () => void;
   toggleRunAlgorithm: () => void;
   toggleClearState: () => void;
 }
 
 const Nav = ({
-  runAlgorithm,
-  clearState,
+  toggleGenerateMaze,
   toggleRunAlgorithm,
   toggleClearState,
 }: Props) => {
@@ -39,7 +37,8 @@ const Nav = ({
     <div className={styles.container}>
       <div className={[styles.conatiner, styles.titleContainer].join(' ')}>
         <img className={styles.logo} src="src/assets/images/Logo.png" alt="Logo"  /> 
-        <h1 className={styles.h1}>Pathfinding Visualizer</h1></div>
+        <h1 className={styles.h1}>Pathfinding Visualizer</h1>
+      </div>
       <div className={styles.menu}>
         <DropdownButton open={open} toggleOpen={toggleOpen} name="Legend">
           <DropdownMenu
@@ -57,6 +56,9 @@ const Nav = ({
         <DropdownButton open={open} toggleOpen={toggleOpen} name="Algorithm">
           <DropdownMenu primaryValues={algorithms}></DropdownMenu>
         </DropdownButton>
+        <button className={styles.buttonSubset} onClick={toggleGenerateMaze}>
+            Generate Maze
+        </button>
         <DropdownButton open={open} toggleOpen={toggleOpen} name="Speed">
           <DropdownMenu primaryValues={speedValues}></DropdownMenu>
         </DropdownButton>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Grid.module.css";
 import Node from "../Node";
 import { PriorityQueue } from "./PriorityQueue";
+import { log } from "console";
 
 interface Props {
   clearState: boolean;
@@ -10,6 +11,8 @@ interface Props {
   target: string;
   start: string;
   runAlgorithm: boolean;
+  genMaze: boolean;
+  toggleGenerateMaze: () => void;
   toggleRunAlgorithm: () => void;
   toggleClearState: () => void;
 }
@@ -27,6 +30,8 @@ const Grid = ({
   target,
   start,
   runAlgorithm,
+  genMaze,
+  toggleGenerateMaze,
   toggleRunAlgorithm,
   toggleClearState,
 }: Props) => {
@@ -143,6 +148,7 @@ const Grid = ({
   };
 
   // Convert the list of JSX elements to a grid (2D array)
+  // This will be useful for detecting whether a Wall exists within the Grid component.
   const createWallGrid = () => {
     console.log("creating wallGrid");
 
@@ -220,6 +226,13 @@ const Grid = ({
       // createNodeList();
     }
   }, [clearState]);
+
+  useEffect(() => {
+    if (genMaze) {
+      randomMazeGenerator();
+      toggleGenerateMaze();
+    }
+  }, [genMaze])
   //==============================================
 
   // This ensures that the visualization is slow enough for the user to see.
@@ -524,7 +537,7 @@ const Grid = ({
               console.log("this is prev at the top", prev);
               await sleep(2000);
               findShortestPath(prev);
-              return prev;
+              return;
             }
           }
         }
@@ -606,6 +619,17 @@ const Grid = ({
       await sleep(5);
     }
   };
+  //==============================================
+  const randomMazeGenerator = () => {
+    console.log("mazey");
+    let visited = Array.from({ length: numRows }, () => Array.from({ length: numCols }, () => false));
+    let randomStartIndex = Math.floor(Math.random() * 1000);
+    mazeGenerator(visited, randomStartIndex);
+  }
+
+  const mazeGenerator = (visited: boolean[][], startIndex: number) => {
+    
+  }
   //==============================================
   return (
     <div className={styles.grid}>

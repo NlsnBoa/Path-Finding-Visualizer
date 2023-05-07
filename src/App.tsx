@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 function App() {
   const [runAlgorithm, setRunAlgorithm] = useState(false);
   const [clearState, setClearState] = useState(false);
+  const [genMaze, setGenMaze] = useState(false);
 
   const toggleRunAlgorithm = () => {
     setRunAlgorithm(!runAlgorithm);
@@ -15,24 +16,28 @@ function App() {
   const toggleClearState = () => {
     setClearState(!clearState);
   };
+  const toggleGenerateMaze = () => {
+    setGenMaze(!genMaze);
+  }
 
   return (
     <>
       <div className="app">
         <Nav
-          runAlgorithm={runAlgorithm}
-          clearState={clearState}
+          toggleGenerateMaze={toggleGenerateMaze}
           toggleRunAlgorithm={toggleRunAlgorithm}
           toggleClearState={toggleClearState}
         ></Nav>
         <div className="container">
           <Grid
-            clearState={clearState}
             target={"node-5-35"}
             start={"node-9-15"}
             numCols={50}
             numRows={20}
+            genMaze={genMaze}
+            clearState={clearState}
             runAlgorithm={runAlgorithm}
+            toggleGenerateMaze={toggleGenerateMaze}
             toggleRunAlgorithm={toggleRunAlgorithm}
             toggleClearState={toggleClearState}
           ></Grid>
