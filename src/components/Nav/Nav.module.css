@@ -91,6 +91,8 @@ h1 {
     width: 44px;
     margin-left: 15px;
     margin-bottom: 5px;
+    background: url(src/assets/images/pathfindingvisualizerlogo.svg);
+    background-size: contain;
 }
 
 .logo:hover {
