@@ -91,7 +91,7 @@ h1 {
     width: 44px;
     margin-left: 15px;
     margin-bottom: 5px;
-    background: url(src/assets/images/PathfindingVisualizerLogo-9ed9b477.svg);
+    background: url(assets/PathfindingVisualizerLogo-9ed9b477.svg) ;
     background-size: contain;
 }
 
