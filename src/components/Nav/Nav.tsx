@@ -36,7 +36,7 @@ const Nav = ({
   return (
     <div className={styles.container}>
       <div className={[styles.conatiner, styles.titleContainer].join(' ')}>
-        <img className={styles.logo} src="src/assets/images/Logo.png" alt="Logo"  /> 
+        <img className={styles.logo} src="src/assets/images/PathfindingVisualizerLogo.svg" alt="Logo"  /> 
         <h1 className={styles.h1}>Pathfinding Visualizer</h1>
       </div>
       <div className={styles.menu}>
@@ -56,9 +56,9 @@ const Nav = ({
         <DropdownButton open={open} toggleOpen={toggleOpen} name="Algorithm">
           <DropdownMenu primaryValues={algorithms}></DropdownMenu>
         </DropdownButton>
-        <button className={styles.buttonSubset} onClick={toggleGenerateMaze}>
+        {/* <button className={styles.buttonSubset} onClick={toggleGenerateMaze}>
             Generate Maze
-        </button>
+        </button> */}
         <DropdownButton open={open} toggleOpen={toggleOpen} name="Speed">
           <DropdownMenu primaryValues={speedValues}></DropdownMenu>
         </DropdownButton>
