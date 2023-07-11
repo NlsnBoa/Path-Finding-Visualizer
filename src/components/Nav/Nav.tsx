@@ -36,7 +36,7 @@ const Nav = ({
   return (
     <div className={styles.container}>
       <div className={[styles.conatiner, styles.titleContainer].join(' ')}>
-        <img className={styles.logo} src="src/assets/images/PathfindingVisualizerLogo.svg" alt="Logo"  /> 
+        <img className={styles.logo} src="images/PathfindingVisualizerLogo.svg" alt="Logo"  /> 
         <h1 className={styles.h1}>Pathfinding Visualizerrr</h1>
       </div>
       <div className={styles.menu}>
